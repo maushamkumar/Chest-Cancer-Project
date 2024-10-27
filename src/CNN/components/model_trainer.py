@@ -41,7 +41,6 @@ class Training:
             shuffle=False,
             **dataflow_kwargs
         )
-
         if self.config.params_is_augmentation:
             train_datagenerator = tf.keras.preprocessing.image.ImageDataGenerator(
                 rotation_range=40,
@@ -61,8 +60,7 @@ class Training:
             shuffle=True,
             **dataflow_kwargs
         )
-
-    
+        
     @staticmethod
     def save_model(path: Path, model: tf.keras.Model):
         model.save(path)
