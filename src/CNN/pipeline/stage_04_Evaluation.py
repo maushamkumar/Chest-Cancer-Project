@@ -14,7 +14,7 @@ class EvaluateModel:
         eval_config = config.get_evaluation_config()
         evaluation = Evaluation(eval_config)
         evaluation.evaluation()         # Runs the model evaluation
-        evaluation.log_into_mlflow()
+        # evaluation.log_into_mlflow()
         
 if __name__ == "__main__":
     try:

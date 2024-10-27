@@ -1,0 +1,46 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: PYTHONPATH=. python src/CNN/pipeline/stage_01_data_ingestion.py
+    deps:
+    - path: config/config.yml
+      hash: md5
+      md5: f58b6533d94fb194762d9e098b8a0173
+      size: 596
+    - path: src/CNN/pipeline/stage_01_data_ingestion.py
+      hash: md5
+      md5: 0bcc25aff3692e5c00602989bc739161
+      size: 888
+    outs:
+    - path: artifacts/data_ingestion/Chest-CT-Scan-data
+      hash: md5
+      md5: 904fa45d934ce879b3b1933dca6cb2f1.dir
+      size: 49247431
+      nfiles: 343
+  prepare_base_model:
+    cmd: python src/CNN/pipeline/stage_02_prepare_base_model.py
+    deps:
+    - path: config/config.yml
+      hash: md5
+      md5: f58b6533d94fb194762d9e098b8a0173
+      size: 596
+    - path: src/CNN/pipeline/stage_02_prepare_base_model.py
+      hash: md5
+      md5: c65c0d923645430fe76dc5c5a341a164
+      size: 980
+    params:
+      params.yaml:
+        CLASSES: 2
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+        INCLUDE_TOP: false
+        LEARNING_RATE: 0.02
+        WEIGHTS: imagenet
+    outs:
+    - path: artifacts/prepare_base_model
+      hash: md5
+      md5: f41744f0411e657848d3a97ef9eb3f1a.dir
+      size: 118058104
+      nfiles: 2
